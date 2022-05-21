@@ -1,6 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { NavBar, MainBanner, AboutBanner } from "../src/components";
+import {
+  NavBar,
+  MainBanner,
+  AboutBanner,
+  SuggestionBanner,
+} from "../src/components";
 
 const Home: NextPage = () => {
   return (
@@ -12,6 +17,7 @@ const Home: NextPage = () => {
       <MainBanner />
       <div className="max-centered">
         <AboutBanner />
+        <SuggestionBanner />
       </div>
     </>
   );
