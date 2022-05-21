@@ -7,12 +7,12 @@ const SuggestionBanner = () => {
     >
       <img
         srcSet="
-        assets/img/bg-people.png      750w,
-        assets/img/bg-people.@2x.png 1440w
+        img/bg-people.png      750w,
+        img/bg-people.@2x.png 1440w
       "
         sizes="(min-width: 750px) 1440px, 100vw"
         className="banner__background"
-        src="assets/img/bg-people.png"
+        src="img/bg-people.png"
         alt=""
         role="none"
       />

@@ -5,6 +5,7 @@ import {
   MainBanner,
   AboutBanner,
   SuggestionBanner,
+  Footer,
 } from "../src/components";
 
 const Home: NextPage = () => {
@@ -18,6 +19,8 @@ const Home: NextPage = () => {
       <div className="max-centered">
         <AboutBanner />
         <SuggestionBanner />
+        <hr role="separator" />
+        <Footer />
       </div>
     </>
   );
