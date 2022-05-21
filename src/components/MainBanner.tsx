@@ -1,6 +1,4 @@
-import { ScriptProps } from "next/script";
-
-const Banner = () => {
+const MainBanner = () => {
   return (
     <header className="hero">
       <img
@@ -66,4 +64,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default MainBanner;

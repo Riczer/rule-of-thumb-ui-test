@@ -1,6 +1,4 @@
-import type { NextComponentType } from "next";
-
-const NavBar: NextComponentType = () => {
+const NavBar = () => {
   return (
     <nav className="nav" role="navigation">
       <div className="max-centered">
