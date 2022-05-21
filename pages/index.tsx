@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { NavBar } from "../src/components";
+import { NavBar, MainBanner } from "../src/components";
 
 const Home: NextPage = () => {
   return (
@@ -9,6 +9,7 @@ const Home: NextPage = () => {
         <title>Rule of Thumb</title>
       </Head>
       <NavBar />
+      <MainBanner />
     </>
   );
 };
