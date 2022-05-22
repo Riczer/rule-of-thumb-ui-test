@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import {
@@ -10,9 +10,17 @@ import {
 } from "../src/components";
 import VotingCard from "../src/components/VotingCard";
 import votingInfo from "../public/data.json";
+import { useMediaQuery } from "../src/hooks";
 
 const Home: NextPage = () => {
   const [showAs, setShowAs] = useState<"grid" | "list">("list");
+  const matches = useMediaQuery("(min-width: 768px)");
+
+  useEffect(() => {
+    if (!matches) {
+      setShowAs("grid");
+    }
+  }, [matches]);
 
   return (
     <>
