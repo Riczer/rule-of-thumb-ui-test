@@ -462,6 +462,251 @@ main h2 {
   display: contents;
 }
 
+.voting-collection {
+  display: flex;
+}
+
+.voting-collection--list {
+  flex-direction: column;
+  gap: 14px;
+}
+
+.voting-collection--grid {
+  overflow-x: scroll;
+  margin-left: -12px;
+}
+
+.voting-item--grid {
+  padding-left: 12px;
+  box-sizing: border-box;
+  max-width: 90%;
+}
+
+.voting-card {
+  display: flex;
+  position: relative;
+}
+
+.voting-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.voting-card--grid {
+  flex-direction: column;
+}
+
+.voting-card--list:before {
+  margin-left: 30px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.0001) 0%,
+    #888888 19.79%,
+    #666666 50%,
+    rgba(51, 51, 51, 0.6) 71.88%
+  );
+}
+
+.voting-card--grid:before {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.0001) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.voting-card__container {
+  display: flex;
+}
+
+.voting-card__container--grid {
+  position: absolute;
+  bottom: 15%;
+  flex-direction: column;
+  margin: 0 30px;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+.voting-card__content {
+  z-index: 10;
+}
+
+.voting-card__content {
+  display: flex;
+}
+
+.voting-card__status {
+  padding: 7px;
+  position: absolute;
+}
+
+.voting-card__status--grid {
+  width: 16px;
+  height: 16px;
+  bottom: 50%;
+  left: 0;
+}
+
+.voting-card__status--list {
+  top: 0;
+  left: 0;
+}
+
+.voting-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.voting-card__title {
+  font-weight: 400;
+  margin: 0;
+  color: #ffffff;
+  padding: 12px 0 6px 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.voting-card__title--grid {
+  font-size: 2.5rem;
+}
+
+.voting-card__description {
+  margin: 0;
+  color: #ffffff;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.voting-card__description--grid {
+  font-size: 1.25rem;
+}
+
+.voting-card__description--list {
+  font-size: 1.25rem;
+}
+
+.voting-container {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 17px;
+  flex: 1;
+}
+
+.voting-container--grid {
+  padding-top: 12px;
+}
+
+.voting-container--list {
+  padding: 8px 14px 0 40px;
+}
+
+.voting-container__info {
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.voting-container__info--grid {
+  font-size: 1rem;
+}
+
+.voting-container__info--list {
+  font-size: 0.833rem;
+}
+
+.voting-actions {
+  display: flex;
+  gap: 9px;
+}
+
+.voting-actions__button {
+  border: 0;
+  font-size: 0;
+  padding: 7px;
+}
+
+.voting-actions > img {
+  width: 24px;
+  height: 24px;
+}
+
+.voting-actions__button--focus {
+  border: 2px solid #ffffff;
+}
+
+.voting-actions__button--positive {
+  background-color: rgb(var(--color-green-positive));
+}
+
+.voting-actions__button--negative {
+  background-color: rgb(var(--color-yellow-negative));
+}
+
+.voting-actions__cast {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.voting-actions__cast--grid {
+  font-size: 1.25rem;
+  min-width: 107px;
+}
+
+.voting-actions__cast--list {
+  font-size: 1rem;
+  min-width: 135px;
+}
+
+.gauge-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+}
+
+.gauge-bar__status {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 18px;
+}
+
+.gauge-bar__status > img {
+  width: 15px;
+  height: 15px;
+}
+
+.gauge-bar__status--positive {
+  background-color: rgba(var(--color-green-positive), 0.6);
+}
+
+.gauge-bar__status--negative {
+  background-color: rgba(var(--color-yellow-negative), 0.6);
+  justify-content: flex-end;
+}
+
+.gauge-bar__ratio {
+  color: #ffffff;
+}
+
+.gauge-bar__ratio--grid {
+  font-size: 1.5rem;
+}
+
 @media all and (min-width: 500px) {
   .banner-top .banner__left {
     flex-basis: 30%;
@@ -476,6 +721,61 @@ main h2 {
   html,
   body {
     font-size: 14px;
+  }
+
+  .voting-collection--grid {
+    overflow-x: hidden;
+    width: calc(100% + 21px);
+    margin-left: -21px;
+    flex-wrap: wrap;
+  }
+
+  .voting-item--grid {
+    padding-left: 21px;
+    padding-top: 21px;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+
+  .voting-card--list {
+    height: 142px;
+  }
+
+  .voting-card__title--grid {
+    font-size: 2.143rem;
+  }
+
+  .voting-card__title--list {
+    font-size: 2rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .voting-card__description--grid {
+    font-size: 1.071rem;
+  }
+
+  .voting-card__description--list {
+    font-size: 1rem;
+  }
+
+  .voting-container__info {
+    font-size: 0.857rem;
+  }
+
+  .voting-actions__cast--grid {
+    font-size: 1.071rem;
+  }
+
+  .gauge-bar__status--grid > img {
+    width: 15px;
+    height: 15px;
+  }
+
+  .gauge-bar__ratio {
+    font-size: 1.286rem;
   }
 
   .hero {
@@ -578,6 +878,85 @@ main h2 {
   body {
     font-size: 18px;
   }
+
+  .voting-collection--grid {
+    width: calc(100% + 27px);
+    margin-left: -27px;
+  }
+
+  .voting-collection--list {
+    gap: 18px;
+  }
+
+  .voting-item--grid {
+    padding-left: 27px;
+    padding-top: 27px;
+    max-width: 33.33%;
+    max-width: 33.33%;
+  }
+
+  .voting-card__status {
+    padding: 10.5px;
+  }
+
+  .voting-card__status--list {
+    width: 22.5px;
+    height: 22.5px;
+  }
+
+  .voting-card--list {
+    height: 170px;
+  }
+
+  .voting-card__title--grid {
+    font-size: 2rem;
+  }
+
+  .voting-card__description--grid {
+    font-size: 0.833rem;
+  }
+
+  .voting-container__info--grid {
+    font-size: 0.667rem;
+  }
+
+  .voting-container__info--list {
+    font-size: 0.833rem;
+  }
+
+  .voting-actions__cast--grid {
+    font-size: 0.833rem;
+  }
+
+  .gauge-bar__status--list {
+    height: 54px;
+  }
+
+  .gauge-bar__ratio--grid {
+    font-size: 1rem;
+  }
+
+  .gauge-bar__status--list > img {
+    width: 22.5px;
+    height: 22.5px;
+  }
+
+  .gauge-bar__ratio--list {
+    font-size: 1.5rem;
+  }
+
+  /* .voting-actions__button {
+    padding: 10.5px;
+  }
+
+  .voting-actions__button > img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .voting-card:before {
+    margin-left: 45px;
+  } */
 
   .max-centered {
     position: relative;
