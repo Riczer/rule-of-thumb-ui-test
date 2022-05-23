@@ -43,8 +43,6 @@ const VotingCard = ({
   const [focused, setFocused] = useState<VoteType | null>(null);
   const [voted, setVoted] = useState<boolean>(false);
 
-  console.log(differenceInCalendarYears(new Date(), new Date(lastUpdated)));
-
   const handleImage = () => {
     if (showAs === "list") {
       const [name, ext] = picture.split(".");
