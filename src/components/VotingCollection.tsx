@@ -21,6 +21,7 @@ const VotingCollection = () => {
       setVotingData(data);
     } else {
       localStorage.setItem("celebrities", JSON.stringify(votingInfo.data));
+      setVotingData(votingInfo.data);
     }
   }, []);
 
