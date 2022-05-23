@@ -151,8 +151,11 @@ const VotingCard = ({
                 : "voting-container__info--list"
             }`}
           >
-            about 1 month ago in{" "}
-            {category.charAt(0).toUpperCase() + category.slice(1)}
+            {voted
+              ? "Thank you for your vote!"
+              : `about 1 month ago in ${
+                  category.charAt(0).toUpperCase() + category.slice(1)
+                }`}
           </span>
           <div className="voting-actions">
             <VoteButton
