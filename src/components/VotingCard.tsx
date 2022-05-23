@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Info } from "../types";
+import { differenceInCalendarYears } from "date-fns";
 
 type VoteType = "positive" | "negative";
 
@@ -17,8 +18,8 @@ interface ButtonProps {
 }
 
 const VOTE_IMAGE = {
-  positive: "thumbs-up.svg",
-  negative: "thumbs-down.svg",
+  positive: "thumbs-up",
+  negative: "thumbs-down",
 };
 
 const VoteButton = ({ type, focused, voted, onCheck }: ButtonProps) => {
@@ -29,18 +30,20 @@ const VoteButton = ({ type, focused, voted, onCheck }: ButtonProps) => {
       } ${voted && "voting-actions__button--hidden"}`}
       onClick={() => onCheck(type)}
     >
-      <img src={`img/${VOTE_IMAGE[type]}`} alt={VOTE_IMAGE[type]} />
+      <img src={`img/${VOTE_IMAGE[type]}.svg`} alt={VOTE_IMAGE[type]} />
     </button>
   );
 };
 
 const VotingCard = ({
   showAs,
-  info: { name, description, picture, votes, category },
+  info: { name, description, picture, votes, category, lastUpdated },
   onVote,
 }: CardProps) => {
   const [focused, setFocused] = useState<VoteType | null>(null);
   const [voted, setVoted] = useState<boolean>(false);
+
+  console.log(differenceInCalendarYears(new Date(), new Date(lastUpdated)));
 
   const handleImage = () => {
     if (showAs === "list") {
@@ -153,7 +156,10 @@ const VotingCard = ({
           >
             {voted
               ? "Thank you for your vote!"
-              : `about 1 month ago in ${
+              : `about ${differenceInCalendarYears(
+                  new Date(),
+                  new Date(lastUpdated)
+                )} year ago in ${
                   category.charAt(0).toUpperCase() + category.slice(1)
                 }`}
           </span>
