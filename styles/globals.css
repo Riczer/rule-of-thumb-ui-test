@@ -733,6 +733,14 @@ main h2 {
     font-size: 14px;
   }
 
+  .select {
+    font-size: 0.75rem;
+    width: 131px;
+    height: 28px;
+    text-align: center;
+    border: 2px solid #333333;
+  }
+
   .voting-collection__title {
     font-size: 1.714rem;
   }
@@ -892,6 +900,11 @@ main h2 {
   html,
   body {
     font-size: 18px;
+  }
+
+  .select {
+    width: 137px;
+    height: 36px;
   }
 
   .voting-collection__title {

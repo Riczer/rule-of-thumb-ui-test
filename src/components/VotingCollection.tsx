@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { VotingCard } from ".";
 import votingInfo from "../../public/data.json";
 import { useMediaQuery } from "../hooks";
@@ -36,24 +36,44 @@ const VotingCollection = () => {
     });
   };
 
+  const handleChangeView = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setShowAs(value as "grid" | "list");
+  };
+
   return (
-    <div
-      className={`voting-collection ${
-        showAs === "grid"
-          ? "voting-collection--grid"
-          : "voting-collection--list"
-      }`}
-    >
-      {votingData.map((info) => (
-        <div
-          className={`voting-item ${
-            showAs === "grid" ? "voting-item--grid" : "voting-item--list"
-          }`}
-          key={info.name}
-        >
-          <VotingCard showAs={showAs} info={info} onVote={handleVoting} />
-        </div>
-      ))}
+    <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h1 className="voting-collection__title">Previous Rulings</h1>
+        <select className="select" value={showAs} onChange={handleChangeView}>
+          <option value="list">List</option>
+          <option value="grid">Grid</option>
+        </select>
+      </div>
+      <div
+        className={`voting-collection ${
+          showAs === "grid"
+            ? "voting-collection--grid"
+            : "voting-collection--list"
+        }`}
+      >
+        {votingData.map((info) => (
+          <div
+            className={`voting-item ${
+              showAs === "grid" ? "voting-item--grid" : "voting-item--list"
+            }`}
+            key={info.name}
+          >
+            <VotingCard showAs={showAs} info={info} onVote={handleVoting} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -20,10 +20,7 @@ const Home: NextPage = () => {
       <div className="max-centered">
         <AboutBanner />
         <main role="main">
-          <div>
-            <h1 className="voting-collection__title">Previous Rulings</h1>
-            <VotingCollection />
-          </div>
+          <VotingCollection />
         </main>
         <SuggestionBanner />
         <hr role="separator" />
