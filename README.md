@@ -1,4 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rule of Thumb™️ - Zemoga
+
+## Overview
+
+Rule of Thumb™️ tracks the sentiment of their users on trending and controversial people from different fields, including politics, business, media and entertainment, etc. 
+
+[Zemoga Front End Development - Candidate Test v2.1](https://github.com/zemoga/ui-test)
+
+## Live Demo
+
+[Demo](https://rule-of-thumb-ui-test-riczer.vercel.app/)
+
+## Tecnologies
+
+### Used
+
+- Next.js
+- TypeScript
+- Vercel
+
+### Needed to run this project
+
+- Node.js ^14.17.0
+- npm ^6.14.13
+- Yarn Package Manager ^1.22.10
 
 ## Getting Started
 
