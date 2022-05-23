@@ -462,6 +462,10 @@ main h2 {
   display: contents;
 }
 
+.select {
+  display: none;
+}
+
 .voting-collection__title {
   font-size: 2rem;
   font-weight: 300;
@@ -734,6 +738,7 @@ main h2 {
   }
 
   .select {
+    display: block;
     font-size: 0.75rem;
     width: 131px;
     height: 28px;
