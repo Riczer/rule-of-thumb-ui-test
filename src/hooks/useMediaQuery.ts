@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+//Add a custom media query listener
 function useMediaQuery(query: string): boolean {
   const getMatches = (query: string): boolean => {
     // Prevents SSR issues

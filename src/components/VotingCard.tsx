@@ -1,7 +1,9 @@
 import { useState, useMemo } from "react";
 import { Info } from "../types";
 import { differenceInCalendarYears } from "date-fns";
+import { calcPercentage } from "../utils";
 
+//Types and interfaces
 type VoteType = "positive" | "negative";
 
 interface CardProps {
@@ -22,6 +24,7 @@ const VOTE_IMAGE = {
   negative: "thumbs-down",
 };
 
+//VoteButton Component
 const VoteButton = ({ type, focused, voted, onCheck }: ButtonProps) => {
   return (
     <button
@@ -35,16 +38,18 @@ const VoteButton = ({ type, focused, voted, onCheck }: ButtonProps) => {
   );
 };
 
+//VotingCard Component
 const VotingCard = ({
   showAs,
   info: { name, description, picture, votes, category, lastUpdated },
   onVote,
 }: CardProps) => {
+  //Selected action to cast a vote
   const [focused, setFocused] = useState<VoteType | null>(null);
+  //Voting status
   const [voted, setVoted] = useState<boolean>(false);
 
-  console.log(differenceInCalendarYears(new Date(), new Date(lastUpdated)));
-
+  //Get small image for list and big image for grid
   const handleImage = () => {
     if (showAs === "list") {
       const [name, ext] = picture.split(".");
@@ -53,14 +58,7 @@ const VotingCard = ({
     return picture;
   };
 
-  const calcPercentage = (total: number, quantity: number): number => {
-    const percentage = (quantity / total) * 100;
-    if (Number.isInteger(percentage)) {
-      return percentage;
-    }
-    return Number.parseFloat(percentage.toFixed(1));
-  };
-
+  //Get positive and negative percentage
   const [positive, negative] = (() => {
     const total = votes.positive + votes.negative;
     const positivePercentage = calcPercentage(total, votes.positive);
@@ -68,16 +66,20 @@ const VotingCard = ({
     return [positivePercentage, negativePercentage];
   })();
 
+  //Cast a vote if available
   const handleVoting = (name: string) => {
+    //If no action is selected, don't cast any vote
     if (focused !== null) {
       onVote(name, focused);
       setFocused(null);
       setVoted(true);
+      //Reset voted state
     } else {
       setVoted(false);
     }
   };
 
+  //Select action to cast a vote
   const handleFocus = (focus: VoteType) => {
     setFocused(focus);
   };
