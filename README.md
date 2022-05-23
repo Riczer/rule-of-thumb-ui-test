@@ -10,7 +10,7 @@ Rule of Thumb™️ tracks the sentiment of their users on trending and controve
 
 [Demo](https://rule-of-thumb-ui-test-riczer.vercel.app/)
 
-## Tecnologies
+## Technologies
 
 ### Used
 
