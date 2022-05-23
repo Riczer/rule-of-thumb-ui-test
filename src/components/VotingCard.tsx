@@ -1,20 +1,82 @@
+import { useState, useMemo } from "react";
 import { Info } from "../types";
 
-interface Props {
+type VoteType = "positive" | "negative";
+
+interface CardProps {
   showAs: "grid" | "list";
   info: Info;
+  onVote: (name: string, type: VoteType) => void;
 }
+
+interface ButtonProps {
+  focused: VoteType | null;
+  type: VoteType;
+  voted: boolean;
+  onCheck: (focus: VoteType) => void;
+}
+
+const VOTE_IMAGE = {
+  positive: "thumbs-up.svg",
+  negative: "thumbs-down.svg",
+};
+
+const VoteButton = ({ type, focused, voted, onCheck }: ButtonProps) => {
+  return (
+    <button
+      className={`voting-actions__button voting-actions__button--${type} ${
+        focused === type && "voting-actions__button--focus"
+      } ${voted && "voting-actions__button--hidden"}`}
+      onClick={() => onCheck(type)}
+    >
+      <img src={`img/${VOTE_IMAGE[type]}`} />
+    </button>
+  );
+};
 
 const VotingCard = ({
   showAs,
-  info: { name, description, picture },
-}: Props) => {
+  info: { name, description, picture, votes, category },
+  onVote,
+}: CardProps) => {
+  const [focused, setFocused] = useState<VoteType | null>(null);
+  const [voted, setVoted] = useState<boolean>(false);
+
   const handleImage = () => {
     if (showAs === "list") {
       const [name, ext] = picture.split(".");
       return `${name}-small.${ext}`;
     }
     return picture;
+  };
+
+  const calcPercentage = (total: number, quantity: number): number => {
+    const percentage = (quantity / total) * 100;
+    if (Number.isInteger(percentage)) {
+      return percentage;
+    }
+    return Number.parseFloat(percentage.toFixed(1));
+  };
+
+  const [positive, negative] = (() => {
+    const total = votes.positive + votes.negative;
+    const positivePercentage = calcPercentage(total, votes.positive);
+    const negativePercentage = calcPercentage(total, votes.negative);
+    return [positivePercentage, negativePercentage];
+  })();
+
+  const handleVoting = (name: string) => {
+    if (focused !== null) {
+      onVote(name, focused);
+      setFocused(null);
+      setVoted(true);
+    } else {
+      setVoted(false);
+    }
+  };
+
+  const handleFocus = (focus: VoteType) => {
+    setFocused(focus);
   };
 
   return (
@@ -25,13 +87,19 @@ const VotingCard = ({
     >
       <img src={`img/${handleImage()}`} />
       <img
-        src="img/thumbs-up.svg"
+        src={`img/${positive > negative ? "thumbs-up.svg" : "thumbs-down.svg"}`}
         className={`voting-card__status ${
           showAs === "grid"
             ? "voting-card__status--grid"
             : "voting-card__status--list"
         }`}
-        style={{ backgroundColor: "rgb(var(--color-green-positive))" }}
+        style={{
+          backgroundColor: `rgb(var(${
+            positive > negative
+              ? "--color-green-positive"
+              : "--color-yellow-negative"
+          }))`,
+        }}
       />
       <div
         className={`voting-card__container ${
@@ -82,29 +150,31 @@ const VotingCard = ({
                 : "voting-container__info--list"
             }`}
           >
-            1 month ago in Entertainment
+            about 1 month ago in{" "}
+            {category.charAt(0).toUpperCase() + category.slice(1)}
           </span>
           <div className="voting-actions">
-            <button
-              className="voting-actions__button voting-actions__button--positive"
-              onClick={() => {}}
-            >
-              <img src="img/thumbs-up.svg" />
-            </button>
-            <button
-              className="voting-actions__button voting-actions__button--negative"
-              onClick={() => {}}
-            >
-              <img src="img/thumbs-down.svg" />
-            </button>
+            <VoteButton
+              type="positive"
+              focused={focused}
+              voted={voted}
+              onCheck={handleFocus}
+            />
+            <VoteButton
+              type="negative"
+              focused={focused}
+              voted={voted}
+              onCheck={handleFocus}
+            />
             <button
               className={`voting-actions__cast ${
                 showAs === "grid"
                   ? "voting-actions__cast--grid"
                   : "voting-actions__cast--list"
               }`}
+              onClick={() => handleVoting(name)}
             >
-              Vote Now
+              Vote {voted ? "Again" : "Now"}
             </button>
           </div>
         </div>
@@ -116,7 +186,7 @@ const VotingCard = ({
               ? "gauge-bar__status--grid"
               : "gauge-bar__status--list"
           } gauge-bar__status--positive`}
-          style={{ width: "50%" }}
+          style={{ width: `${positive}%` }}
         >
           <img src="img/thumbs-up.svg" />
           <span
@@ -126,7 +196,7 @@ const VotingCard = ({
                 : "gauge-bar__ratio--list"
             }`}
           >
-            50%
+            {positive}%
           </span>
         </div>
         <div
@@ -135,7 +205,7 @@ const VotingCard = ({
               ? "gauge-bar__status--grid"
               : "gauge-bar__status--list"
           } gauge-bar__status--negative`}
-          style={{ width: "50%" }}
+          style={{ width: `${negative}%` }}
         >
           <span
             className={`gauge-bar__ratio ${
@@ -144,7 +214,7 @@ const VotingCard = ({
                 : "gauge-bar__ratio--list"
             }`}
           >
-            50%
+            {negative}%
           </span>
           <img src="img/thumbs-down.svg" />
         </div>

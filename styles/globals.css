@@ -462,6 +462,12 @@ main h2 {
   display: contents;
 }
 
+.voting-collection__title {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--color-dark-gray);
+}
+
 .voting-collection {
   display: flex;
 }
@@ -637,13 +643,17 @@ main h2 {
   padding: 7px;
 }
 
+.voting-actions__button--hidden {
+  visibility: hidden;
+}
+
 .voting-actions > img {
   width: 24px;
   height: 24px;
 }
 
 .voting-actions__button--focus {
-  border: 2px solid #ffffff;
+  outline: 2px solid #ffffff;
 }
 
 .voting-actions__button--positive {
@@ -723,10 +733,15 @@ main h2 {
     font-size: 14px;
   }
 
+  .voting-collection__title {
+    font-size: 1.714rem;
+  }
+
   .voting-collection--grid {
     overflow-x: hidden;
     width: calc(100% + 21px);
     margin-left: -21px;
+    margin-top: -21px;
     flex-wrap: wrap;
   }
 
@@ -879,9 +894,14 @@ main h2 {
     font-size: 18px;
   }
 
+  .voting-collection__title {
+    font-size: 2.5rem;
+  }
+
   .voting-collection--grid {
     width: calc(100% + 27px);
     margin-left: -27px;
+    margin-top: -27px;
   }
 
   .voting-collection--list {
@@ -945,18 +965,9 @@ main h2 {
     font-size: 1.5rem;
   }
 
-  /* .voting-actions__button {
-    padding: 10.5px;
+  .voting-card__status--grid {
+    padding: 7px;
   }
-
-  .voting-actions__button > img {
-    width: 24px;
-    height: 24px;
-  }
-
-  .voting-card:before {
-    margin-left: 45px;
-  } */
 
   .max-centered {
     position: relative;

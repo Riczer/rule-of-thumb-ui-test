@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import {
@@ -7,21 +6,10 @@ import {
   AboutBanner,
   SuggestionBanner,
   Footer,
+  VotingCollection,
 } from "../src/components";
-import VotingCard from "../src/components/VotingCard";
-import votingInfo from "../public/data.json";
-import { useMediaQuery } from "../src/hooks";
 
 const Home: NextPage = () => {
-  const [showAs, setShowAs] = useState<"grid" | "list">("list");
-  const matches = useMediaQuery("(min-width: 768px)");
-
-  useEffect(() => {
-    if (!matches) {
-      setShowAs("grid");
-    }
-  }, [matches]);
-
   return (
     <>
       <Head>
@@ -32,22 +20,9 @@ const Home: NextPage = () => {
       <div className="max-centered">
         <AboutBanner />
         <main role="main">
-          <div
-            className={`voting-collection ${
-              showAs === "grid"
-                ? "voting-collection--grid"
-                : "voting-collection--list"
-            }`}
-          >
-            {votingInfo.data.map((info, index) => (
-              <div
-                className={`voting-item ${
-                  showAs === "grid" ? "voting-item--grid" : "voting-item--list"
-                }`}
-              >
-                <VotingCard showAs={showAs} info={info} key={index} />
-              </div>
-            ))}
+          <div>
+            <h1 className="voting-collection__title">Previous Rulings</h1>
+            <VotingCollection />
           </div>
         </main>
         <SuggestionBanner />
