@@ -912,6 +912,10 @@ main h2 {
     height: 36px;
   }
 
+  .voting-card--list:before {
+    margin-left: 43.5px;
+  }
+
   .voting-collection__title {
     font-size: 2.5rem;
   }
