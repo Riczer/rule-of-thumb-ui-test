@@ -29,7 +29,7 @@ const VoteButton = ({ type, focused, voted, onCheck }: ButtonProps) => {
       } ${voted && "voting-actions__button--hidden"}`}
       onClick={() => onCheck(type)}
     >
-      <img src={`img/${VOTE_IMAGE[type]}`} />
+      <img src={`img/${VOTE_IMAGE[type]}`} alt={VOTE_IMAGE[type]} />
     </button>
   );
 };
@@ -85,7 +85,7 @@ const VotingCard = ({
         showAs === "grid" ? "voting-card--grid" : "voting-card--list"
       }`}
     >
-      <img src={`img/${handleImage()}`} />
+      <img src={`img/${handleImage()}`} alt="celebrity" />
       <img
         src={`img/${positive > negative ? "thumbs-up.svg" : "thumbs-down.svg"}`}
         className={`voting-card__status ${
@@ -100,6 +100,7 @@ const VotingCard = ({
               : "--color-yellow-negative"
           }))`,
         }}
+        alt={positive > negative ? "thumbs-up" : "thumbs-down"}
       />
       <div
         className={`voting-card__container ${
@@ -188,7 +189,7 @@ const VotingCard = ({
           } gauge-bar__status--positive`}
           style={{ width: `${positive}%` }}
         >
-          <img src="img/thumbs-up.svg" />
+          <img src="img/thumbs-up.svg" alt="thumbs-up" />
           <span
             className={`gauge-bar__ratio ${
               showAs === "grid"
@@ -216,7 +217,7 @@ const VotingCard = ({
           >
             {negative}%
           </span>
-          <img src="img/thumbs-down.svg" />
+          <img src="img/thumbs-down.svg" alt="thumbs-down" />
         </div>
       </div>
     </div>
